@@ -79,6 +79,22 @@ contract Arbitrage is Test {
         /**
          * Please add your solution below
          */
+        // swap from B -> A -> D -> C -> B
+        address[] memory path = new address[](5);
+        path[0] = address(tokenB);
+        path[1] = address(tokenA);
+        path[2] = address(tokenD);
+        path[3] = address(tokenC);
+        path[4] = address(tokenB);
+        uint256[] memory amount = new uint256[](5);
+        uint256 amountin;
+        amountin = 5 ether;
+        amount = router.getAmountsOut(amountin, path);
+        console.log("Amount out 1: %s", amount[1]);
+        console.log("Amount out 2: %s", amount[2]);
+        console.log("Amount out 3: %s", amount[3]);
+        console.log("Amount out 4: %s", amount[4]);
+        router.swapExactTokensForTokens(5 ether, 0 ether, path, arbitrager , block.timestamp);
         /**
          * Please add your solution above
          */
